@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+</head>
+<body>
+    <div class="main" layout:fragment="content">
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}">Home</a> <span class="divider">/</span></li>
+            <li><a th:href="@{/users/}">Users</a> <span class="divider">/</span></li>
+        </ul>
+        <form th:action="@{/users/__${user.id}__}" method="post">
+            <input type="hidden" id="_method" name="_method" th:value="put"/>
+            <fieldset>
+                <input type="hidden" name="id" th:value="${user.id}" />
+                <div class="clearfix">
+                    <label for="firstname">firstname</label>
+                    <div class="input">
+                        <input type="text" id="firstname" name="firstname" th:value="${user.firstname}" />
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="lastname">lastname</label>
+                    <div class="input">
+                        <input type="text" id="lastname" name="lastname" th:value="${user.lastname}" />
+                    </div>
+                </div>
+                <div class="actions">
+                    <input class="btn primary" type="submit" value="Update" />
+                    <a class="btn" th:href="@{/users/}">Cancel</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

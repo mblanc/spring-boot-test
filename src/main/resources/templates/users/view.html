@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <div class="main" layout:fragment="content">
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}">Home</a> <span class="divider">/</span></li>
+            <li><a th:href="@{/users/}">Users</a> <span class="divider">/</span></li>
+        </ul>
+        <div>Firstname : <span th:text="${user.firstname}" /></div>
+        <div>Lastname : <span th:text="${user.lastname}" /></div>
+        <div class="actions">
+            <a class="btn primary" th:href="@{/users/__${user.id}__/edit}">Edit</a>
+            <input class="btn danger" type="submit" onclick="if (confirm('Are you sure?')) { document.forms['delete'].submit();}return false;" value="Delete"/>
+            <form th:action="@{/users/__${user.id}__}" class="hide" id="delete" method="delete"></form>
+        </div>
+        <div>
+            <a class="btn" th:href="@{/users/}">Users</a>
+        </div>
+    </div>
+</body>
+</html>
